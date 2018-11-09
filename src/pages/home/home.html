@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Obi Wan Kenotetimen
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngIf="data.length === 0 && !loading">
+    <ion-card-header>
+      Bienvenidos a "Obi Wan Kenotetimen"
+    </ion-card-header>
+    <ion-card-content>
+      Escanea el código de de barras de tus productos y comprueba su precio actual en los principales supermercados.
+      <p class="fuck">
+        Fuck the system
+        <ion-icon name="heart" color="danger"></ion-icon>
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <ion-list *ngIf="data.length > 0">
+    <ion-item *ngFor="let product of data">
+      <ion-thumbnail item-start>
+        <img [src]="product.imgUrl">
+      </ion-thumbnail>
+      <h2>{{product.name}}</h2>
+      <p>Otra info</p>
+      <button ion-button clear item-end>{{product.price}}</button>
+    </ion-item>
+  </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab large color="primary" (click)="scan()">
+      Scan!
+    </button>
+  </ion-fab>
+</ion-content>
